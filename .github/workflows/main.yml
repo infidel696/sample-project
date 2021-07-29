@@ -17,7 +17,12 @@ jobs:
       - name: Bicep Build
         uses: aliencube/bicep-build-actions@v0.3
         with:
-          files: 'sample-bicep/*.bicep'          
+          files: 'sample-bicep/*.bicep'
+          
+      - name: Show generated ARM template files
+        shell: bash
+        run: |
+          echo 'Results: ${{ toJSON(fromJSON(sample-bicep/azuredeploy.json)) }}'
          
       - name: Run ARM TTK
         uses: aliencube/arm-ttk-actions@v0.3
