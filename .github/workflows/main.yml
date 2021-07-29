@@ -1,0 +1,32 @@
+name: ARM-TTK
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  buildAndTestBicep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Bicep Build
+        uses: aliencube/bicep-build-actions@v0.3
+        with:
+          files: 'sample-bicep/*.bicep'          
+         
+      - name: Run ARM TTK
+        uses: aliencube/arm-ttk-actions@v0.3
+        id: armtest
+        with:
+          path: ./Bicep
+      
+      - name: Show ARM TTK test result
+        shell: bash
+        continue-on-error: true
+        run: |
+          echo 'Results: ${{ toJSON(fromJSON(steps.armtest.outputs.results)) }}'
