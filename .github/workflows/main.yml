@@ -24,6 +24,7 @@ jobs:
         id: armtest
         with:
           path: ./sample-bicep
+          files: "*.json"
       
       - name: Show ARM TTK test result
         shell: bash
