@@ -22,7 +22,7 @@ jobs:
       - name: Show generated ARM template files
         shell: bash
         run: |
-          echo 'Results: ${{ toJSON(fromJSON(sample-bicep/azuredeploy.json)) }}'
+          echo "$(<./sample-bicep/azuredeploy.json)"
          
       - name: Run ARM TTK
         uses: aliencube/arm-ttk-actions@v0.3
