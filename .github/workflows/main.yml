@@ -23,7 +23,7 @@ jobs:
         uses: aliencube/arm-ttk-actions@v0.3
         id: armtest
         with:
-          path: ./Bicep
+          path: ./sample-bicep
       
       - name: Show ARM TTK test result
         shell: bash
